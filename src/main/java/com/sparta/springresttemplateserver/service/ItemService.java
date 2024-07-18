@@ -12,6 +12,7 @@ import java.util.List;
 public class ItemService {
 
   private final List<Item> itemList = Arrays.asList(
+          // Java에서 '_'은 가독성을 위해 사용하는 문법으로 컴파일러는 이를 숫자로 처리한다
           new Item("Mac", 3_888_000),
           new Item("iPad", 1_230_000),
           new Item("iPhone", 1_550_000),
@@ -20,12 +21,22 @@ public class ItemService {
   );
 
   public Item getCallObject(String query) {
+    for (Item item : itemList) {
+      if(item.getTitle().equals(query)) {
+        return item;
+      }
+    }
     return null;
   }
 
   public ItemResponseDto getCallList() {
-    return null;
+    ItemResponseDto responseDto = new ItemResponseDto();
+    for (Item item : itemList) {
+      responseDto.setItems(item);
+    }
+    return responseDto;
   }
+
 
   public Item postCall(String query, UserRequestDto requestDto) {
     return null;

@@ -16,8 +16,11 @@ public class ItemController {
     this.itemService = itemService;
   }
 
+  // 클라이언트에서 보낸 URI객체의 .path(): .path("/api/server/get-call-obj")
   @GetMapping("/get-call-obj")
-  public Item getCallObject(@RequestParam String query) {
+  public Item getCallObject(
+          @RequestParam
+          String query) {
     return itemService.getCallObject(query);
   }
 
