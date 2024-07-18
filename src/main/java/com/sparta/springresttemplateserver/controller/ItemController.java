@@ -4,8 +4,10 @@ import com.sparta.springresttemplateserver.dto.ItemResponseDto;
 import com.sparta.springresttemplateserver.dto.UserRequestDto;
 import com.sparta.springresttemplateserver.entity.Item;
 import com.sparta.springresttemplateserver.service.ItemService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/server")
 public class ItemController {
@@ -40,7 +42,11 @@ public class ItemController {
   }
 
   @PostMapping("/exchange-call")
-  public ItemResponseDto exchangeCall(@RequestHeader("X-Authorization") String token, @RequestBody UserRequestDto requestDto) {
+  public ItemResponseDto exchangeCall(
+          @RequestHeader("X-Authorization")
+          String token, // X-Authorization의 value값
+          @RequestBody
+          UserRequestDto requestDto) {
     return itemService.exchangeCall(token, requestDto);
   }
 }
